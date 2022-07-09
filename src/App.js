@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 function App() {
   /* variabel sementara */
   const [ datas, setDatas ] = useState([])
+  const [ userSelect, setUserSelect ] = useState("")
+  const [ isShow, setIsShow ] = useState(false)
   
   /* function mengambil data api nya */
   const getBerrys = async () => {
@@ -23,15 +25,25 @@ function App() {
     setDatas(result)
   }
   
-  
   /* ketika pertama kali di reander */
   useEffect(() => {
     /* jalankan function getBerrys */
     getBerrys()
   }, [])
+  
+  const handleSubmit = () => {
+    setIsShow(true)
+  }
+  const handleChange = (value) => {
+    setUserSelect(value)
+  }
   return (
     <div className="content">
-      <Select options={datas} />
+      <h1>{isShow ? userSelect : "" }</h1>
+      <button onClick={() => handleSubmit() }> Show value</button>
+      <br />
+      <br />
+      <Select options={datas} onChange={(e) => handleChange(e.value)} />
     </div>
   );
 }
