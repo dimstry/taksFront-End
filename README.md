@@ -1,5 +1,5 @@
 ## taks 📝
-<img src="soal.png" width="300px">
+<img src="soal.png" width="350px">
 
 # Getting Started with Create React App
 
