@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import Select from 'react-select'
 import './App.css';
+import { useEffect, useState } from 'react'
 
 function App() {
+  const [ datas, setDatas ] = useState([])
+  
+  const getBerrys = async () => {
+    const berrys = await fetch("https://pokeapi.co/api/v2/berry/")
+    const value = await berrys.json()
+    const result = value.results.map(data => {
+      return {
+        label: data.name,
+        value: data.label
+      }
+    })
+    setDatas(result)
+  }
+  
+  useEffect(() => {
+    getBerrys()
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="content">
+      <Select options={datas} />
     </div>
   );
 }
