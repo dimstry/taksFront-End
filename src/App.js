@@ -32,9 +32,11 @@ function App() {
   }, [])
   
   const handleSubmit = () => {
+    console.log("handle submit");
     setIsShow(true)
   }
   const handleChange = (value) => {
+    console.log(value)
     setUserSelect(value)
   }
   return (
@@ -43,7 +45,7 @@ function App() {
       <button onClick={() => handleSubmit() }> Show value</button>
       <br />
       <br />
-      <Select options={datas} onChange={(e) => handleChange(e.value)} />
+      <Select options={datas} onChange={(e) => handleChange(e.label)} />
     </div>
   );
 }
